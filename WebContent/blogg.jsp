@@ -73,12 +73,12 @@
 	for (Post post : bloggSystem.getPosts()) { %>
 		<li>
 		  <h1><%= post.getTitle() %></h1>
-		  <span>Kategori: <a href=""><%= post.getCategory().getCategory() %></a></span> 
+		  <% out.print("<span>Kategori: <a href=\"viewcategory.jsp?id=" + post.getCategory().getId() + "\">" + post.getCategory().getCategory() +"</a></span>"); %>
 		  <br />
 		  <br />
 		  <p><%= post.getContent() %></p>
 		  <br />
-		  <span>Skrivet av: <a href=""><%= post.getAuthor().getName() %></a></span>
+		    <% out.print("<span>Skrivet av: <a href=\"viewauthor.jsp?id=" + post.getAuthor().getId() + "\">" + post.getAuthor().getName() +"</a></span>"); %>
 		  <p><%= post.getJustDate() %></p>
 		  <% out.print("<a href=\"removepost.jsp?id=" + post.getId() + "\">Ta bort</a>"); %>
 		<div class="divider"></div>

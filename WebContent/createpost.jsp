@@ -22,6 +22,7 @@ Date date = new Date();
 
 boolean error = false;
 
+
 if(title != null && content != null){
 	post.setValues(title, content, date);
 }else{
@@ -30,16 +31,14 @@ if(title != null && content != null){
 
 if(authorIdString != null){
 	int authorId = Integer.parseInt(authorIdString);
-	authorId--; //remove 1 from the authorId to make it match the id in the database
-	post.setAuthor(bloggSystem.getAuthors().get(authorId));
+	post.setAuthor(BlogFactory.getAuthor(authorId));
 }else{
 	error = true;
 }
 
 if(categoryIdString != null){
 	int categoryId = Integer.parseInt(categoryIdString);
-	categoryId--; //remove 1 from the categoryId to make it match the id in the database
-	post.setCategory(bloggSystem.getCategories().get(categoryId));
+	post.setCategory(BlogFactory.getCategory(categoryId));
 }else{
 	error = true;
 }
