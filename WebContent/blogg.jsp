@@ -18,7 +18,7 @@
 	bloggSystem = BlogFactory.createBlogSystem(bloggSystem);
 
 %>	
-	<div class="new-post">
+	<div class="new">
 	    <h1>Skapa nytt inlägg</h1>
 		<form class="blogg" method="post" action="createpost.jsp">
 			<label for="title">Titel:</label>
@@ -56,10 +56,10 @@
 			<input name="submit" id="submit-button" type="submit" value="Posta inlägg">
 		</form> 
 		<br />
-		<a href="#">Skapa ny författare</a>
+		<a href="newauthor.jsp">Skapa ny författare</a>
 		<br />
 		<br />
-		<a href="">Skapa ny kategori</a>
+		<a href="addcategory.jsp">Skapa ny kategori</a>
 	</div>
     <br />
     <br />
@@ -73,10 +73,14 @@
 	for (Post post : bloggSystem.getPosts()) { %>
 		<li>
 		  <h1><%= post.getTitle() %></h1>
-		  <p>Kategori: <%= post.getCategory().getCategory() %></p>
+		  <span>Kategori: <a href=""><%= post.getCategory().getCategory() %></a></span> 
+		  <br />
+		  <br />
 		  <p><%= post.getContent() %></p>
-		  <p>Skrivet av: <%= post.getAuthor().getName() %></p>
-		  <p><%= post.getDate() %></p>
+		  <br />
+		  <span>Skrivet av: <a href=""><%= post.getAuthor().getName() %></a></span>
+		  <p><%= post.getJustDate() %></p>
+		  <% out.print("<a href=\"removepost.jsp?id=" + post.getId() + "\">Ta bort</a>"); %>
 		<div class="divider"></div>
 		<br />
 		</li>

@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true" import="java.util.List, java.sql.*, blog.*, java.util.ArrayList, java.util.Date"%>
     <% Class.forName("com.mysql.jdbc.Driver").newInstance(); %>
-<% 
+<%  
 
 Blogg bloggSystem = new Blogg();
 
 bloggSystem = BlogFactory.createBlogSystem(bloggSystem);
 
 Post post = new Post();
+
+request.setCharacterEncoding("UTF-8");
 String title = request.getParameter("title");
 String content = request.getParameter("content");
 
@@ -45,12 +47,9 @@ if(categoryIdString != null){
 
 if(error != true){
 	BlogFactory.insertPost(post);	
-}
+	%>
+	<script>window.location = '/Blogg_webb/blogg.jsp';</script>
+<%}else{%>
+    <script>alert("Något gick fel, försök igen!"); window.location = '/Blogg_webb/createpost.jsp';</script>
+<%} %>
 
-	//Om fel? skicka till annan sida
-	//create author, create category, remove alla 3.
-    //lösa denna metod bättre?:Blogg bloggSystem = BlogFactory.createBlogSystem(); 
-	//insertar inte med utf-8 och datum blir fel
-	
-%>
-<script>window.location = '/Blogg_webb/blogg.jsp';</script>
