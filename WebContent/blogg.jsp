@@ -59,7 +59,7 @@
 		<a href="newauthor.jsp">Skapa ny författare</a>
 		<br />
 		<br />
-		<a href="addcategory.jsp">Skapa ny kategori</a>
+		<a href="newcategory.jsp">Skapa ny kategori</a>
 	</div>
     <br />
     <br />

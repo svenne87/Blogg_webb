@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Bloggen</title>
+<title>Skapa författare</title>
  <link href="bootstrap-min.css" rel="stylesheet" media="screen">   
  <link href="style.css" rel="stylesheet" media="screen"> 
 </head>
