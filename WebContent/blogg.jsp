@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1" import="java.util.List, java.sql.SQLException, java.util.Date, blog.*" %>
+    pageEncoding="UTF-8" import="java.util.List, java.sql.SQLException, java.util.Date, blog.*" %>
 <% Class.forName("com.mysql.jdbc.Driver").newInstance(); %>
 <!DOCTYPE HTML>
 <html>
@@ -11,28 +11,28 @@
 </head>
 <body>
 <% 
+	
+	//Blogg bloggSystem = BlogFactory.createBlogSystem(); <------OLD
 	Blogg bloggSystem = new Blogg();
-
-	bloggSystem.setAuthors(BlogFactory.getAllAuthors());
-	bloggSystem.setCategories(BlogFactory.getAllCategories());
-	bloggSystem.setPosts(BlogFactory.getAllPosts(bloggSystem));
+	
+	bloggSystem = BlogFactory.createBlogSystem(bloggSystem);
 
 %>	
 	<div class="new-post">
-	    <h1>Skapa nytt inlägg</h1>
-		<form class="blogg" method="post" action="">
+	    <h1>Skapa nytt inlÃ¤gg</h1>
+		<form class="blogg" method="post" action="createpost.jsp">
 			<label for="title">Titel:</label>
-			<input name="title" id="title-input" placeholder="Skriv titeln här" required pattern=".{2,200}" maxlength="200">
+			<input name="title" id="title-input" placeholder="Skriv titeln hÃ¤r" required pattern=".{2,200}" maxlength="200">
 			<br />
 			
-			<label for="author">Författare:</label>
+			<label for="author">FÃ¶rfattare:</label>
 			<select name="author">
 				<% if (bloggSystem.getAuthors().size() > 0) {%>
 					<% for (Author author : bloggSystem.getAuthors()){ %>
 						<option value="<%= author.getId() %>"> <%= author.getName() %></option>
 					<% } %>
 				<% }else{ %>
-					<option>Inga författare hittades</option>
+					<option>Inga fÃ¶rfattare hittades</option>
 				<% } %>
 			</select>
 			<br />
@@ -50,13 +50,13 @@
 			<br />
 			
 			<label for="content">Meddelande</label>
-			<textarea name="content" placeholder="Skriv inlägg här" id="content-input" required maxlength="2000"></textarea>
+			<textarea name="content" placeholder="Skriv inlÃ¤gg hÃ¤r" id="content-input" required maxlength="2000"></textarea>
 			<br />
 			
-			<input name="submit" id="submit-button" type="submit" value="Posta inlägg">
+			<input name="submit" id="submit-button" type="submit" value="Posta inlÃ¤gg">
 		</form> 
 		<br />
-		<a href="#">Skapa ny författare</a>
+		<a href="#">Skapa ny fÃ¶rfattare</a>
 		<br />
 		<br />
 		<a href="">Skapa ny kategori</a>
